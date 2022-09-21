@@ -2,6 +2,7 @@ import { onValue, ref } from "firebase/database";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
+import GameState_Waiting from "../../components/game_components/waiting";
 import { globalPlayer, isInGame } from "../../global/recoilState";
 import { database } from "../../libs/realtime";
 
@@ -27,7 +28,7 @@ export default function GameDirectorPage() {
 
   if (gameState == "waiting") {
     return (
-      <p>Yo it loaded</p>
+      <GameState_Waiting />
     );
   } else if (gameState == "playing") {
     return (

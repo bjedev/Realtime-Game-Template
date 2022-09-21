@@ -17,6 +17,7 @@
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.4.0",
+    "react-spring": "^9.5.4",
     "react-tsparticles": "^2.3.1",
     "recoil": "^0.7.5",
     "tsparticles": "^2.3.1",
