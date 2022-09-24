@@ -3,6 +3,7 @@ import { toast } from "react-hot-toast";
 import { fetchGame } from "../../libs/gameLib";
 import { hostGame } from "../../libs/highLevelGameLib";
 import { BsFillPersonFill } from "react-icons/bs";
+import { get, onValue } from "firebase/database";
 
 export async function getServerSideProps(context) {
   let game = hostGame()
@@ -16,12 +17,22 @@ export async function getServerSideProps(context) {
 export default function HostWaiting({ gameId }) {
 
   const [game, setGame] = useState(null);
+  const [players, setPlayers] = useState([])
 
   // Set the game state to the database reference
   useEffect(() => {if (gameId !== undefined) setGame(fetchGame(gameId))}, [gameId]);
 
   useEffect(() => {
-    console.log(game);
+    console.log("Game: " + game);
+    if (game) {
+      onValue(game, (snapshot) => {
+        const data = snapshot.val().players;
+
+        console.log(data)
+        
+        setPlayers(data)
+      });      
+    }
   }, [game]);
 
   return (
@@ -51,6 +62,13 @@ export default function HostWaiting({ gameId }) {
         
         <p className="text-5xl font-bold">Firebase Template</p>
         <button className="btn btn-primary">Start</button>
+
+      </div>
+
+      <div className="grid">
+        {players?.map((player) => 
+          <p>{player}</p>
+        )}
       </div>
     </div>
   );

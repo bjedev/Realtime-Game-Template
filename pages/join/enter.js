@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import Particles from "react-tsparticles";
 import { useRecoilState } from 'recoil';
 import { loadFull } from "tsparticles";
@@ -39,6 +40,7 @@ function checkGameID(gameId) {
     if (exists) {
       return true;
     } else {
+      toast.error("That game does not exist!")
       return false;
     }
   }).catch((error) => {
