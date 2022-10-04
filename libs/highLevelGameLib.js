@@ -48,3 +48,23 @@ export const hostGame = () => {
   // Get the game Id and return it
   return gameId;
 }
+
+export const updateState = (gameId, state) => {
+  const dbRef = ref(database, `games/${gameId}/state`);
+  set(dbRef, state);
+}
+
+export const readGameState = (gameId) => {
+  const dbRef = ref(database, `games/${gameId}/state`);
+  const data = get(dbRef).then((snapshot) => {
+    if (snapshot.exists()) {
+      return snapshot.val();
+    } else {
+      return false;
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
+
+  return data;
+}

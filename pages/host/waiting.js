@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { fetchGame } from "../../libs/gameLib";
-import { hostGame } from "../../libs/highLevelGameLib";
+import { hostGame, updateState } from "../../libs/highLevelGameLib";
 import { BsFillPersonFill } from "react-icons/bs";
 import { get, onValue } from "firebase/database";
+import HostPlayerBubble from "../../components/HostPlayer";
 
 export async function getServerSideProps(context) {
   let game = hostGame()
@@ -26,11 +27,13 @@ export default function HostWaiting({ gameId }) {
     console.log("Game: " + game);
     if (game) {
       onValue(game, (snapshot) => {
-        const data = snapshot.val().players;
+        if (snapshot.val()) {
+          const data = snapshot.val().players;
 
-        console.log(data)
-        
-        setPlayers(data)
+          console.log(data)
+          
+          setPlayers(data)
+        }
       });      
     }
   }, [game]);
@@ -56,18 +59,18 @@ export default function HostWaiting({ gameId }) {
 
       <div className="flex flex-row items-center justify-evenly w-90 m-3">
         <div className="w-14 h-5 text-center flex flex-row justify-center items-center gap-x-3">
-          <p className="text-2xl font-bold">0</p>
+          <p className="text-2xl font-bold">{players ? players.length : 0}</p>
           <BsFillPersonFill className="text-5xl" />
         </div>
         
         <p className="text-5xl font-bold">Firebase Template</p>
-        <button className="btn btn-primary">Start</button>
+        <button className="btn btn-primary" onClick={() => updateState(gameId, "playing")}>Start</button>
 
       </div>
 
-      <div className="grid">
-        {players?.map((player) => 
-          <p>{player}</p>
+      <div className="grid grid-cols-8 p-12 space-y-3">
+        {players?.map((player) =>
+          <HostPlayerBubble player={player} pageType="hostWaiting" />
         )}
       </div>
     </div>

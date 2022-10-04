@@ -1,1 +1,0 @@
-After the user joins the game, send them to a "director.js" page. On this page it will diplay components based off of the current game state in the databse
