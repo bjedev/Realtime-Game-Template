@@ -15,8 +15,6 @@ export default function GameDirectorPage() {
   const [gameState, setGameState] = useState();
   const [gameRef, setGameRef] = useState();
 
-  if (true == false)
-
   const router = useRouter();
 
   useEffect(() => {

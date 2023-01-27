@@ -58,7 +58,7 @@ function JoinCard() {
     <div className='grid gap-x-4 grid-cols-2'>
       {!gameExists ? (
         <>
-          <input onChange={(e) => setGameId(e.target.value)} className='input bg-base-200' placeholder='Game Id' maxLength={6}/>
+          <input onChange={(e) => setGameId(e.target.value)} className='input bg-base-200' placeholder='Game ID' maxLength={6}/>
           <button disabled={!gameId || gameId.length != 6} className='btn btn-primary' onClick={() => {checkGameID(gameId).then((e) => {setGameExists(e)})}}>Join</button>
         </>
       ) : (

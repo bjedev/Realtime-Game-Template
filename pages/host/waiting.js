@@ -4,6 +4,7 @@ import { fetchGame } from "../../libs/gameLib";
 import { hostGame, updateState } from "../../libs/highLevelGameLib";
 import { BsFillPersonFill } from "react-icons/bs";
 import { get, onValue } from "firebase/database";
+import { getAuth, signInWithCustomToken } from "firebase/auth";
 import HostPlayerBubble from "../../components/HostPlayer";
 
 export async function getServerSideProps(context) {
@@ -40,7 +41,7 @@ export default function HostWaiting({ gameId }) {
 
   return (
     <div>
-      {/* Game Bar */}
+      {/* Game Bar */ }
 
       <div className="navbar bg-base-200">
         <div className="navbar-start">
@@ -68,7 +69,7 @@ export default function HostWaiting({ gameId }) {
 
       </div>
 
-      <div className="grid grid-cols-8 p-12 space-y-3">
+      <div className="grid grid-cols-8 p-12">
         {players?.map((player) =>
           <HostPlayerBubble player={player} pageType="hostWaiting" />
         )}
