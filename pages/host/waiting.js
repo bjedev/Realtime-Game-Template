@@ -71,7 +71,7 @@ export default function HostWaiting({ gameId }) {
 
       <div className="grid grid-cols-8 p-12">
         {players?.map((player) =>
-          <HostPlayerBubble player={player} pageType="hostWaiting" />
+          <HostPlayerBubble player={player} pageType="hostWaiting" key={player} />
         )}
       </div>
     </div>
