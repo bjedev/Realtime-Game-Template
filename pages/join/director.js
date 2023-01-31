@@ -18,7 +18,7 @@ export default function GameDirectorPage() {
   const router = useRouter();
 
   useEffect(() => {
-    if (!isInGameState || !player) {
+    if (!isInGameState || !player || !player.gameId) {
       router.push("/join/enter");
     }
 

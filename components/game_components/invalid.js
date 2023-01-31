@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { readGameState } from "../../libs/highLevelGameLib";
 
@@ -6,6 +7,7 @@ export default function GameState_Invalid({ game, player }) {
   const [gameState, setGameState] = useState();
 
   //get the game state from the game ref in the parameter
+
   readGameState(player.gameId).then((state) => {
     setGameState(state);
   });
