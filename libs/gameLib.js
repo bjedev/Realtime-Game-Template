@@ -12,9 +12,13 @@ export const createGame = (gameId) => {
 
   set(dbRef, {
     players: [],
-    state: "waiting",
+    state: "",
     data: [],
   });
+}
+
+export const windowClose = (gameId) => {
+  dbRef.remove()
 }
 
 // Read game from Id

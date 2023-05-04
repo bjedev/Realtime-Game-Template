@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { fetchGame } from "../../libs/gameLib";
+import { fetchGame, windowClose } from "../../libs/gameLib";
 import { hostGame, updateState } from "../../libs/highLevelGameLib";
 import { BsFillPersonFill } from "react-icons/bs";
 import { get, onValue } from "firebase/database";
@@ -38,6 +38,10 @@ export default function HostWaiting({ gameId }) {
       });      
     }
   }, [game]);
+
+  window.onbeforeunload = function () {
+    windowClose()
+};
 
   return (
     <div>
