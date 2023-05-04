@@ -51,7 +51,7 @@ export const hostGame = () => {
 
 export const updateState = (gameId, state) => {
   const dbRef = ref(database, `games/${gameId}/state`);
-  set(dbRef, state);
+  set(dbRef, state); 
 }
 
 export const readGameState = (gameId) => {

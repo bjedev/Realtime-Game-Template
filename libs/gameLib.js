@@ -1,5 +1,5 @@
 import { get, getDatabase, onDisconnect, ref, set } from "firebase/database";
-import { database } from "./realtime";
+import { database } from "./realtime"; 
 
 // Create game from Id
 

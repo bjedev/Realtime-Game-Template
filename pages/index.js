@@ -11,8 +11,8 @@ export default function Home() {
       <div className='hero min-h-screen bg-base-200'>
         <div className='hero-content text-center'>
           <div className='max-w-lg'>
-            <h1 className='text-3xl font-bold'>Firebase Realtime Template Game</h1>
-            <p className='py-6'>This is a template game made by Fluyd for easy development of multiplayer games using Firebase&apos;s RealtimeDB.</p>
+            <h1 className='text-3xl font-bold'>Bamkit</h1>
+            <p className='py-6'>Game like Blooket and Gimkit</p>
             <div className='grid grid-cols-3 gap-x-2 max-w place-items-center'>
               <button className='btn btn-primary' onClick={() => router.push('/join/enter')}>Join Game</button>
               <div className='divider divider-horizontal' />
