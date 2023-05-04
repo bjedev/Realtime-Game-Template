@@ -12,6 +12,10 @@
 /.next/
 /out/
 
+# firebase
+/.firebase/
+
+
 # production
 /build
 
@@ -30,3 +34,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+#github
+.github

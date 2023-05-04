@@ -40,7 +40,7 @@ export const hostGame = () => {
     // If game Id exists, generate a new one
     if (exists) {
       return false;
-      console.log(`gameId already exists`)
+      console.log("gameId already exists")
     } else {
       createGame(gameId);
       updateState(gameId,"waiting")
