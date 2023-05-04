@@ -1,5 +1,6 @@
 import { get, getDatabase, onDisconnect, ref, set } from "firebase/database";
 import { database } from "./realtime"; 
+import { updateState } from "./highLevelGameLib";
 
 // Create game from Id
 
@@ -12,9 +13,10 @@ export const createGame = (gameId) => {
 
   set(dbRef, {
     players: [],
-    state: "waiting",
+    state: "",
     data: [],
   });
+  updateState(gameId,"waiting")
 }
 
 // Read game from Id

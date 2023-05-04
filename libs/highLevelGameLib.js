@@ -4,6 +4,7 @@ import { isInGame } from "../global/recoilState";
 import { checkGameExists, createGame } from "./gameLib";
 import { database } from "./realtime";
 
+
 // Join game using Id
 
 export const joinGame = (gameId, playerName) => {
@@ -40,10 +41,8 @@ export const hostGame = () => {
     // If game Id exists, generate a new one
     if (exists) {
       return false;
-      console.log("gameId already exists")
     } else {
       createGame(gameId);
-      updateState(gameId,"waiting")
       console.log(gameId)
     }
   });

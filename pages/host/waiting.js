@@ -6,6 +6,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { get, onValue } from "firebase/database";
 import { getAuth, signInWithCustomToken } from "firebase/auth";
 import HostPlayerBubble from "../../components/HostPlayer";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps(context) {
   let game = hostGame()
@@ -15,12 +16,11 @@ export async function getServerSideProps(context) {
   }
 }
 
-
 export default function HostWaiting({ gameId }) {
 
   const [game, setGame] = useState(null);
   const [players, setPlayers] = useState([])
-
+  
   // Set the game state to the database reference
   useEffect(() => {if (gameId !== undefined) setGame(fetchGame(gameId))}, [gameId]);
 
