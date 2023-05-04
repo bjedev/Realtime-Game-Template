@@ -38,11 +38,11 @@ export const hostGame = () => {
   const game = checkGameExists(gameId).then((exists) => {
 
     // If game Id exists, generate a new one
-    if (!exists) {
+    if (exists) {
+      return false;
+    } else {
       createGame(gameId);
       updateState(gameId,"waiting")
-    } else {
-      return false;
     }
   });
 

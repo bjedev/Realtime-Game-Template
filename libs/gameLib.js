@@ -5,7 +5,7 @@ import { database } from "./realtime";
 
 export const createGame = (gameId) => {
   // Create game in database
-  const dbRef = ref(database, `games/${gameId}`);
+  const dbRef = ref(database,`games/${gameId}/`);
 
   // When we disconnect, remove the game from the database
   onDisconnect(dbRef).remove();
@@ -18,7 +18,7 @@ export const createGame = (gameId) => {
 }
 
 export const windowClose = (gameId) => {
-  dbRef.remove()
+  dbRef.remove();
 }
 
 // Read game from Id
