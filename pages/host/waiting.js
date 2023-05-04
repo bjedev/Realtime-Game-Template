@@ -39,10 +39,6 @@ export default function HostWaiting({ gameId }) {
     }
   }, [game]);
 
-  window.onbeforeunload = function () {
-    windowClose()
-};
-
   return (
     <div>
       {/* Game Bar */ }
@@ -52,7 +48,7 @@ export default function HostWaiting({ gameId }) {
           <p className="text-2xl">Go to <b>example.com/play</b> and enter the Game ID</p>
         </div>
         <div className="navbar-center">
-          <a className="btn btn-ghost normal-case text-5xl" onClick={() => {navigator.clipboard.writeText(gameId); toast.success("Coppied to clipboard!")}}>{gameId}</a>
+          <a className="btn btn-ghost normal-case text-5xl" onClick={() => {navigator.clipboard.writeText(gameId); toast.success("Copied to clipboard!")}}>{gameId}</a>
         </div>
         <div className="navbar-end"></div>
       </div>

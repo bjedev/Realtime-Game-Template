@@ -8,17 +8,13 @@ export const createGame = (gameId) => {
   const dbRef = ref(database,`games/${gameId}/`);
 
   // When we disconnect, remove the game from the database
-  onDisconnect(dbRef).deleteGame();
+  onDisconnect(dbRef).remove();
 
   set(dbRef, {
     players: [],
     state: "waiting",
     data: [],
   });
-}
-
-export const windowClose = (gameId) => {
-  dbRef.remove();
 }
 
 // Read game from Id
@@ -34,11 +30,7 @@ export const checkGameExists = (gameId) => {
   const dbRef = ref(database, `games/${gameId}`);
 
   const exists = get(dbRef).then((snapshot) => {
-    if (snapshot.exists()) {
-      return true;
-    } else {
-      return false;
-    }
+    return !!(snapshot.exists());
   }).catch((error) => {
     console.error(error);
   });
