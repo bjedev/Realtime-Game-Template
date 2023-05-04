@@ -32,7 +32,7 @@ export const checkGameExists = (gameId) => {
   const dbRef = ref(database, `games/${gameId}`);
 
   const exists = get(dbRef).then((snapshot) => {
-    return !!(snapshot.exists());
+    return snapshot.exists();
   }).catch((error) => {
     console.error(error);
   });
