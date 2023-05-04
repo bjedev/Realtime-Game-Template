@@ -8,11 +8,11 @@ export const createGame = (gameId) => {
   const dbRef = ref(database,`games/${gameId}/`);
 
   // When we disconnect, remove the game from the database
-  onDisconnect(dbRef).remove();
+  onDisconnect(dbRef).deleteGame();
 
   set(dbRef, {
     players: [],
-    state: "",
+    state: "waiting",
     data: [],
   });
 }
