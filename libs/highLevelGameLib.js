@@ -40,9 +40,11 @@ export const hostGame = () => {
     // If game Id exists, generate a new one
     if (exists) {
       return false;
+      console.log(`gameId already exists`)
     } else {
       createGame(gameId);
       updateState(gameId,"waiting")
+      console.log(gameId)
     }
   });
 
@@ -53,6 +55,7 @@ export const hostGame = () => {
 export const updateState = (gameId, state) => {
   const dbRef = ref(database, `games/${gameId}/state`);
   set(dbRef, state); 
+  console.log(`state updated to ` + state)
 }
 
 export const readGameState = (gameId) => {
