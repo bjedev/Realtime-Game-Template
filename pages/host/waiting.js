@@ -8,15 +8,34 @@ import { getAuth, signInWithCustomToken } from "firebase/auth";
 import HostPlayerBubble from "../../components/HostPlayer";
 import { useRouter } from "next/router";
 
-export const dynamic = 'force-dynamic'
+export const getServerSideProps = async (context) => {
+  const { hostName } = context.query;
 
-export async function getServerSideProps() {
-  let game = hostGame()
+  // Generate a random 6 digit number
+  const gameId = Math.floor(100000 + Math.random() * 900000);
+
+  // Check if game Id already exists
+  const exists = await checkGameExists(gameId);
+
+  // If game Id exists, generate a new one
+  while (exists) {
+    const newGameId = Math.floor(100000 + Math.random() * 900000);
+    exists = await checkGameExists(newGameId);
+  }
+
+  // Create the game with the new game Id
+  await createGame(gameId);
+
+  console.log(gameId);
 
   return {
-    props: {gameId: game}, // will be passed to the page component as props
-  }
-}
+    props: {
+      gameId: gameId.toString(),
+      hostName,
+    },
+  };
+};
+
 
 export default function HostWaiting({ gameId }) {
 
