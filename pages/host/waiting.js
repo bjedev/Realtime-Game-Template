@@ -8,7 +8,7 @@ import { getAuth, signInWithCustomToken } from "firebase/auth";
 import HostPlayerBubble from "../../components/HostPlayer";
 import { useRouter } from "next/router";
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   let game = hostGame()
 
   return {
