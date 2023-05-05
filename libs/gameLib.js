@@ -28,17 +28,18 @@ export const readGameData = (gameId, path) => {
 
 // Check if game exists from Id
 
-export const checkGameExists = (gameId) => {
+export const checkGameExists = async (gameId) => {
   const dbRef = ref(database, `games/${gameId}`);
 
-  const exists = get(dbRef).then((snapshot) => {
+  try {
+    const snapshot = await get(dbRef);
     return snapshot.exists();
-  }).catch((error) => {
+  } catch (error) {
     console.error(error);
-  });
+    return false;
+  }
+};
 
-  return exists;
-}
 
 // Fetch whole game from Id
 
