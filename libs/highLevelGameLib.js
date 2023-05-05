@@ -31,25 +31,28 @@ export const joinGame = (gameId, playerName) => {
   });
 }
 
-export const hostGame = () => {
+export const hostGame = async () => {
   // Generate a random 6 digit number
   let gameId = Math.floor(100000 + Math.random() * 900000);
 
   // Check if game Id already exists
-  const game = checkGameExists(gameId).then((exists) => {
+  const exists = await checkGameExists(gameId);
 
-    // If game Id exists, generate a new one
-    if (exists) {
-      return false;
-    } else {
-      createGame(gameId);
-      console.log(gameId)
-    }
-  });
+  // If game Id exists, generate a new one
+  while (exists) {
+    gameId = Math.floor(100000 + Math.random() * 900000);
+    exists = await checkGameExists(gameId);
+  }
 
-  // Get the game Id and return it
+  // Create the game with the new game Id
+  await createGame(gameId);
+
+  console.log(gameId);
+
+  // Return the game Id
   return gameId;
-}
+};
+
 
 export const updateState = (gameId, state) => {
   const dbRef = ref(database, `games/${gameId}/state`);
