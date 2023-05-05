@@ -47,7 +47,7 @@ export const hostGame = async () => {
   // Create the game with the new game Id
   await createGame(gameId);
 
-  console.log(gameId);
+  console.log(JSON.stringify(gameId));
 
   // Return the game Id
   return gameId;
