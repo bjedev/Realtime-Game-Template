@@ -1,5 +1,7 @@
 # Realtime Game Template
 
+# PLEASE PLEASE PLEASE DO NOT USE THIS!!! There is ZERO authentication for letting players access and break your database, and overall this code is embarrassing to even look at nowadays.
+
 ### Disclaimer: By no means do I think that this is my best code, please feel free to modify it, make Pull Requests, and help me improve it!
 
 ## What is this?
